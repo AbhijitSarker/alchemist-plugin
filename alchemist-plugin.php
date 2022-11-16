@@ -34,32 +34,41 @@ along with {Alchemist}. If not, see {URI to Plugin License}.
 
 
 
-// if(!defined('ABSPATH')){
-//     die;
-// }  //option 1
+if (!defined('ABSPATH')) {
+    die;
+}  //option 1
 
 // defined('ABSPATH') or die('you cant acces this file'); //option 2
 
-if (!function_exists('add_action')) {
-    echo 'cant access this file';
-    exit;
-} //option 3
+// if (!function_exists('add_action')) {
+//     echo 'cant access this file';
+//     exit;
+// } //option 3
 
 class AlchemistPlugin
 {
     function __construct()
     {
+        add_action('init', array($this, 'custom_post_type'));
+    }
+
+    function register()
+    {
+        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
     }
 
     function activate()
     {
         //generate a CPT
+        $this->custom_post_type();
         //flush rewrite rules
+        flush_rewrite_rules();
     }
 
     function deactivate()
     {
         //flush rewrite rules
+        flush_rewrite_rules();
     }
 
     function unstall()
@@ -67,10 +76,23 @@ class AlchemistPlugin
         //delete cpt
         //delete all data
     }
+
+    function custom_post_type()
+    {
+        register_post_type('book', ['public' => true, 'label' => 'Books']);
+    }
+
+    function enqueue()
+    {
+        //enqueue all our script
+        wp_enqueue_style('mypluginstyle', plugins_url('/assests/mystyle.css', '__FILE__'));
+        wp_enqueue_script('mypluginstyle', plugins_url('/assests/myscript.css', '__FILE__'));
+    }
 }
 
 if (class_exists('AlchemistPlugin')) {
     $alchemistPlugin = new AlchemistPlugin();
+    $alchemistPlugin->register();
 }
 
 
@@ -79,4 +101,6 @@ register_activation_hook(__FILE__, array($alchemistPlugin, 'activate'));
 
 //deactivation
 register_deactivation_hook(__FILE__, array($alchemistPlugin, 'deactivate'));
+
 //uninstall
+register_uninstall_hook(__FILE__, array($alchemistPlugin, 'uninstall'));
