@@ -52,9 +52,9 @@ class AlchemistPlugin
         add_action('init', array($this, 'custom_post_type'));
     }
 
-    function register()
+    static function register()
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+        add_action('admin_enqueue_scripts', array('AlchemistPlugin', 'enqueue'));
     }
 
     function activate()
@@ -82,7 +82,7 @@ class AlchemistPlugin
         register_post_type('book', ['public' => true, 'label' => 'Books']);
     }
 
-    function enqueue()
+    static function enqueue()
     {
         //enqueue all our script
         wp_enqueue_style('mypluginstyle', plugins_url('/assests/mystyle.css', '__FILE__'));
@@ -91,8 +91,9 @@ class AlchemistPlugin
 }
 
 if (class_exists('AlchemistPlugin')) {
-    $alchemistPlugin = new AlchemistPlugin();
-    $alchemistPlugin->register();
+    // $alchemistPlugin = new AlchemistPlugin();
+    // $alchemistPlugin->register();
+    AlchemistPlugin::register();
 }
 
 
