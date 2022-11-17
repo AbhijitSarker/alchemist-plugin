@@ -86,7 +86,7 @@ class AlchemistPlugin
     {
         //enqueue all our script
         wp_enqueue_style('mypluginstyle', plugins_url('/assests/mystyle.css', '__FILE__'));
-        wp_enqueue_script('mypluginstyle', plugins_url('/assests/myscript.css', '__FILE__'));
+        wp_enqueue_script('mypluginstyle', plugins_url('/assests/myscript.js', '__FILE__'));
     }
 }
 
