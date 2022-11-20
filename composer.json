@@ -1,0 +1,16 @@
+{
+    "name": "avzit/alchemist-plugin",
+    "type": "wordpress-plugin",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Abhijitsarker",
+            "email": "abhijitsarker03@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}

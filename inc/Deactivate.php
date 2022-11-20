@@ -1,7 +1,7 @@
 <?php
-class AlchemistPluginDeactivate
+class Deactivate
 {
-    public static function deeactivate()
+    public  function deactivate()
     {
         //flush rewrite rules
         flush_rewrite_rules();

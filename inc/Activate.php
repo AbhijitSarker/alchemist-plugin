@@ -1,5 +1,8 @@
 <?php
-class AlchemistPluginActivate
+
+namespace Inc;
+
+class Activate
 {
     public static function activate()
     {
