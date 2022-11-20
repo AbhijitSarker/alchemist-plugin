@@ -1,7 +1,10 @@
 <?php
-class Deactivate
+
+namespace Inc\Base;
+
+class Activate
 {
-    public  function deactivate()
+    public static function activate()
     {
         //flush rewrite rules
         flush_rewrite_rules();
