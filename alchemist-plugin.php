@@ -52,6 +52,8 @@ if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
 use Inc\Activate;
 use Inc\Deactivate;
 
+use Inc\admin\AdminPages;
+
 if (!class_exists('AlchemistPlugin')) {
 
     class AlchemistPlugin
