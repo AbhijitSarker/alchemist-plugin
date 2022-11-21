@@ -33,40 +33,29 @@ You should have received a copy of the GNU General Public License
 along with {Alchemist}. If not, see {URI to Plugin License}.
 */
 
+
 if (!defined('ABSPATH')) {
     die;
-}  //option 1
+}
 
-// defined('ABSPATH') or die('you cant acces this file'); //option 2
-
-// if (!function_exists('add_action')) {
-//     echo 'cant access this file';
-//     exit;
-// } //option 3
-
+//require once the composer autoload 
 if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
 
-define('PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('PLUGIN_URL', plugin_dir_url(__FILE__));
-define('PLUGIN', plugin_basename(__FILE__));
 
-use Inc\Base\Activate;
-use Inc\Base\Deactivate;
-
-
+//activation code
 function activate_alchemist_plugin()
 {
-    Activate::activate();
+    Inc\Base\Activate::activate();
 }
+register_activation_hook(__FILE__, 'activate_alchemist_plugin');
+
+//deactivation code
 function deactivate_alchemist_plugin()
 {
-    Deactivate::deactivate();
+    Inc\Base\Deactivate::deactivate();
 }
-
-
-register_activation_hook(__FILE__, 'activate_alchemist_plugin');
 register_deactivation_hook(__FILE__, 'deactivate_alchemist_plugin');
 
 if (class_exists('Inc\\Init')) {
