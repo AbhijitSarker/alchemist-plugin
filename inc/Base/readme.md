@@ -11,3 +11,5 @@ Sections
 - Custom tamplate sections
 - Ajax based login\register system
 - Membership protected area
+
+* chat system
