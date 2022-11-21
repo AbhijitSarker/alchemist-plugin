@@ -2,8 +2,6 @@
 
 namespace Inc\Api;
 
-
-
 class SettingsApi
 {
     public $admin_pages = array();
