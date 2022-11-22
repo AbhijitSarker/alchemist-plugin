@@ -1,1 +1,1 @@
-<h1>Alchemist Plugin</h1>
+<h1>Alchemist Plugin 1.0</h1>
