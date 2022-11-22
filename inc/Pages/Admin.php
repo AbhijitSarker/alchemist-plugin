@@ -38,9 +38,7 @@ class Admin extends BaseController
                 'menu_title' => 'Alchemist',
                 'capability' => 'manage_options',
                 'menu_slug' => 'alchemist_plugin',
-                'callback' => function () {
-                    return require_once("$this->plugin_path/templates/admin.php");
-                },
+                'callback' => array($this->callbacks, 'adminDashboard'),
                 'icon_url' => 'dashicons-store',
                 'position' => 110
             )
