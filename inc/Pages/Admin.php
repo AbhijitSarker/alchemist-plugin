@@ -8,7 +8,10 @@ use \Inc\Api\SettingsApi;
 class Admin extends BaseController
 {
     public $settings;
+
     public $pages = array();
+
+    public $subpages = array();
 
     public function __construct()
     {
@@ -21,10 +24,45 @@ class Admin extends BaseController
                 'capability' => 'manage_options',
                 'menu_slug' => 'alchemist_plugin',
                 'callback' => function () {
-                    echo 'The Alchemist';
+                    echo '<h1>Plugin</h1>';
                 },
                 'icon_url' => 'dashicons-store',
                 'position' => 110
+            )
+        );
+
+        $this->subpages = array(
+            array(
+                'parent_slug' => 'alchemist_plugin',
+                'page_title' => 'Custom Post Types',
+                'menu_title' => 'CPT',
+                'capability' => 'manage_options',
+                'menu_slug' => 'alchemist_cpt',
+                'callback' => function () {
+                    echo '<h1>CPT Manager</h1>';
+                }
+            ),
+
+            array(
+                'parent_slug' => 'alchemist_plugin',
+                'page_title' => 'Custom Taxonomies',
+                'menu_title' => 'Taxonomies',
+                'capability' => 'manage_options',
+                'menu_slug' => 'alchemist_taxonomies',
+                'callback' => function () {
+                    echo '<h1>Taxonomy Manager</h1>';
+                }
+            ),
+
+            array(
+                'parent_slug' => 'alchemist_plugin',
+                'page_title' => 'Custom Widgets',
+                'menu_title' => 'Widgets',
+                'capability' => 'manage_options',
+                'menu_slug' => 'alchemist_widgets',
+                'callback' => function () {
+                    echo '<h1>Widgets Manager</h1>';
+                }
             )
         );
     }
@@ -32,6 +70,6 @@ class Admin extends BaseController
     public function register()
     {
         // add_action('admin_menu', array($this, 'add_admin_pages'));
-        $this->settings->addPages($this->pages)->register();
+        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
     }
 }
