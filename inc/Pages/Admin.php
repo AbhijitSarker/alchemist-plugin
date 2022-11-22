@@ -54,9 +54,7 @@ class Admin extends BaseController
                 'menu_title' => 'CPT',
                 'capability' => 'manage_options',
                 'menu_slug' => 'alchemist_cpt',
-                'callback' => function () {
-                    echo '<h1>CPT Manager</h1>';
-                }
+                'callback' => array($this->callbacks, 'adminCpt')
             ),
 
             array(
@@ -65,9 +63,7 @@ class Admin extends BaseController
                 'menu_title' => 'Taxonomies',
                 'capability' => 'manage_options',
                 'menu_slug' => 'alchemist_taxonomies',
-                'callback' => function () {
-                    echo '<h1>Taxonomy Manager</h1>';
-                }
+                'callback' => array($this->callbacks, 'adminTaxonomy')
             ),
 
             array(
@@ -76,9 +72,7 @@ class Admin extends BaseController
                 'menu_title' => 'Widgets',
                 'capability' => 'manage_options',
                 'menu_slug' => 'alchemist_widgets',
-                'callback' => function () {
-                    echo '<h1>Widgets Manager</h1>';
-                }
+                'callback' => array($this->callbacks, 'adminWidget')
             )
         );
     }
