@@ -76,4 +76,32 @@ class Admin extends BaseController
             )
         );
     }
+
+    public function setSettings()
+    {
+        $args = array(
+            array(
+                'option_group' => 'alchemist_options_group',
+                'option_name'  => 'text_example',
+                'callback'     => array($this->callbacks, 'alchemistOptionGroup')
+            )
+        );
+
+        $this->settings->setSettings($args);
+    }
+
+    public function setSections()
+    {
+        $args = array(
+            array(
+                'id' => 'alchemist_admin_index',
+                'title'  => 'Settings',
+                'callback' => array($this->callbacks, 'alchemistAdminSection'),
+                'page' => 'alchemist_plugin'
+
+            )
+        );
+
+        $this->settings->setSections($args);
+    }
 }

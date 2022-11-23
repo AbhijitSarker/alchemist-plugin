@@ -25,4 +25,9 @@ class AdminCallbacks extends BaseController
     {
         return require_once("$this->plugin_path/templates/widget.php");
     }
+
+    public function alchemistOptionGroup($input)
+    {
+        return $input;
+    }
 }
