@@ -19,13 +19,14 @@ class Admin extends BaseController
     public function register()
     {
         $this->settings = new SettingsApi();
-
         $this->callbacks = new AdminCallbacks();
 
-
         $this->setPages();
-
         $this->setSubPages();
+
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
 
         $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
     }
@@ -103,5 +104,27 @@ class Admin extends BaseController
         );
 
         $this->settings->setSections($args);
+    }
+
+    public function setFields()
+    {
+        $args = array(
+            array(
+                'id' => 'text_example',
+                'title'  => 'Text Example',
+                'callback' => array($this->callbacks, 'alchemistTextExample'),
+                'page' => 'alchemist_plugin',
+                'section' => 'alchemist_admin_index',
+                'args' => array(
+                    array(
+                        'label_for' => 'text_example',
+                        'class' => 'example_class'
+                    )
+                )
+
+            )
+        );
+
+        $this->settings->setFields($args);
     }
 }
